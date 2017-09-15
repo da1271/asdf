@@ -1,0 +1,35 @@
+img {
+  display: block;
+  margin: auto;
+  width: 40%;
+  height: 20%;
+  padding-top: 100px;
+
+}
+#logInBox {
+  border: 3px solid #aba9a9;
+    border-color: #aba9a9;
+}
+
+#logInButton {
+  background-color: #ccc;
+  border-color: #aba9a9;
+  width: 110%;
+  height: 70%;
+  display: block;
+  margin: auto;
+}
+
+#inputUser {
+  display: block;
+  margin: auto;
+  size: 400px;
+  width: 110%;
+}
+#inputPassword {
+  align: center;
+  display: block;
+  margin: auto;
+  height: 80%;
+  width: 110%;
+}

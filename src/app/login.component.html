@@ -1,0 +1,42 @@
+<header>
+    <h1>
+        <img src="assets/images/ycc_header_logo.png" alt="Yankee Candle">
+    </h1>
+    <p class="subheading">Fullfillment Edition</p>
+</header>
+<div class="login-wrapper">
+    <div>
+        <form #loginForm="ngForm">
+            <div class="alert alert-danger" *ngIf="loginNotAvail">
+                Enter username and password to continue
+            </div>
+            <div class="alert alert-danger" *ngIf="loginfailed">
+                Invalid username or password entered
+            </div>
+            <div class="user-name-tbox">
+                <label for="userName">Username or Email Address</label>
+                <input id="userName" type="text" name="userName" [(ngModel)]="userName" (keyup)="loginNotAvail=false;">
+            </div>
+            <div class="pwd-tbox">
+                <label for="pwd">Password</label>
+                <input id="pwd" type="password" name="usrpwd" [(ngModel)]="usrpwd" (keyup)="loginNotAvail=false;">
+            </div>
+            <div class="clearfix login-button-container">
+                <div class="pull-left remember-me">
+                    <label>
+                        <input type="checkbox" name="rememberCheck" [(ngModel)]="rememberCheck">
+                        <span>Remember me</span>
+                    </label>
+                </div>
+                <div class="pull-right">
+                    <button type="submit" class="login"(click)="userLogin()" >
+                        Login
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="lost-pwd">
+    <a href="javascript:void(0)">Lost your password?</a>
+</div>

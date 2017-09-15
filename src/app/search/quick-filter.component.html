@@ -1,0 +1,9 @@
+<div class="container quick-filter">
+    <h2>Quick Filter:</h2>
+    <div>
+        <label *ngFor="let quickFilter of quickFilters;" [class.input-checked]="quickFilter.checked" >
+            <input type="checkbox" name="quickFilter.key" (change)="filterStateChanged();" [(ngModel)]="quickFilter.checked">
+            <span>{{quickFilter.dispName}}</span>
+        </label>
+    </div>
+</div>

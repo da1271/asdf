@@ -1,0 +1,10 @@
+.ngx-datatable {
+    height: 580px;
+}
+:host /deep/ .ngx-datatable .datatable-checkbox {
+    padding: 0;
+}
+
+:host /deep/ .ngx-datatable .datatable-row-wrapper:nth-child(even) {
+    background: #efefef;
+}

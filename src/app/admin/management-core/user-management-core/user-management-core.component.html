@@ -1,0 +1,10 @@
+<div class="buttonContainer container">
+  <button class="addUserButton"  *ngIf="tabOpen && !onEdit" (click)="setButtonClicked(false); tabWasOpen(false)">+ Add User</button>
+  <button class="addUserButton" *ngIf="!tabOpen && !onEdit" (click)="setButtonClicked(true); tabWasOpen(true)">+ Find User</button>
+</div>
+
+
+<app-register *ngIf="!buttonWasClicked && !onEdit"></app-register>
+<app-edit-user *ngIf="onEdit" [userid]="currentUser" (cancelClicked)="cancelButtonClicked(false)"></app-edit-user>
+<app-find-user *ngIf="buttonWasClicked && !onEdit" (searchClick)="searchUsers()" (onUserEdit)="editJune($event)" (editClicked)="editButtonClicked(true)"></app-find-user>
+<!-- <app-list-view><app-list-view> -->

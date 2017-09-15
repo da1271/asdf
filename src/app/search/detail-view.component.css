@@ -1,0 +1,58 @@
+.detail-view-container {
+    border: 1px solid #666;
+}
+.customer-input-container label {
+    font-weight: normal;
+}
+.customer-details-container h2, .reject-reason-container h2{
+    font-size: 20px;
+    border-bottom: 1px solid #666;
+}
+.customer-input-container {
+    margin: 15px 0;
+}
+.label-img-container img {
+    width: 80%;
+    display: block;
+    margin: 0 auto;
+}
+.reject-reason-contianer input {
+    width: 100%;
+}
+.reject-reason-contianer {
+    margin: 0 0 15px 0;
+}
+.reject-comments-container textarea {
+    resize: none;
+    width: 100%;
+    height: 185px;
+}
+.reject-code-container select {
+    height: 30px;
+}
+.reject-code-container {
+    margin: 5px 0 15px 0;
+}
+.action-buttons-container {
+    padding: 10px 0;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+.action-buttons-container button{
+    background: #fff;
+    border: 1px solid #666;
+    padding: 7px 30px;
+    border-radius: 20px;
+}
+.back-to-search-button {
+    border: none;
+    background: none;
+}
+.back-to-search-button img {
+    width: 41px;
+    height: 41px;
+}
+.back-to-search-button span {
+    display: block;
+    font-size: 10px;
+}

@@ -1,0 +1,66 @@
+<div class="container detail-view-container">
+    <div class="back-to-search clearfix">
+        <button class="pull-right back-to-search-button" (click)="closeSection()"><img src="assets/images/close-button.png" alt="close button"><span>Back to Search</span></button>
+    </div>
+    <div class="row">
+        <div class="col-md-5 label-img-container">
+            <img [src]="labelImageurl" alt="Label image">
+        </div>
+        <div class="col-md-3 customer-details-container">
+            <h2>Customer Details</h2>
+            <form #customerDetailsform="ngForm">
+                <div class="customer-input-container">
+                    <label>First Name</label>
+                    <input class="pull-right" type="text" name="firstName" [value]="customerDetails.firstName" disabled>
+                </div>
+                <div class="customer-input-container">
+                    <label>Sur Name</label>
+                    <input class="pull-right" type="text" name="surname" [value]="customerDetails.surName" disabled>
+                </div>
+                <div class="customer-input-container">
+                    <label>Email</label>
+                    <input class="pull-right" type="text" name="email" [value]="customerDetails.email" disabled>
+                </div>
+                <div class="customer-input-container">
+                    <label>Label Status</label>
+                    <input class="pull-right" type="text" name="status" [value]="customerDetails.status" disabled>
+                </div>
+                <div class="customer-input-container">
+                    <label>Phone#</label>
+                    <input class="pull-right" type="text" name="phone" [value]="customerDetails.phone" disabled>
+                </div>
+                <div class="customer-input-container">
+                    <label>Text Field 1</label>
+                    <input class="pull-right" type="text" name="text1" [value]="customerDetails.text1" disabled>
+                </div>
+                <div class="customer-input-container">
+                    <label>Text Field 2</label>
+                    <input class="pull-right" type="text" name="tetx2" [value]="customerDetails.text2" disabled>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-4 reject-reason-container">
+            <h2>Rejection Reason</h2>
+            <form #rejectReasonform="ngForm">
+                <div class="reject-code-container">
+                    <select name="rejectCode" >
+                    <!-- [(ngModel)]="rejectionProps.rejectCode" -->                    
+                        <option value="null" selected disabled >Reason Code</option>
+                        <option *ngFor="let rejectCodetmpl of rejectCodes" [value]="rejectCodetmpl">{{rejectCodetmpl}}</option>
+                    </select>
+                </div>
+                <div class="reject-reason-contianer">
+                    <input type="text" name="rejectReason" [(ngModel)]="rejectionProps.rejectReason" placeholder="Reason for rejection">
+                </div>
+                <div class="reject-comments-container">
+                    <textarea name="rejectComment" [(ngModel)]="rejectionProps.rejectComment" placeholder="Rejection comments"></textarea>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-md-offset-5 text-center action-buttons-container">
+        <button (click)="rejectOrder();">Reject</button>
+        <button (click)="holdOrder();">Hold</button>
+        <button (click)="approveOrder();">Approve</button>
+    </div>
+</div>

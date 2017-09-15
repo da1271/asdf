@@ -1,0 +1,94 @@
+<div class="user-search-container container">
+  <div class="row">
+    <h2 class="title">
+          Edit Group
+          <button class="pull-right search-view-toggle" [class.searchCollapsed]="!searchViewToggle" (click)="searchViewToggle = !searchViewToggle;"></button>
+        </h2>
+  </div>
+
+  <div class="row search-fields-container" *ngIf="searchViewToggle">
+    <form [formGroup]="profileForm" (ngSubmit)="updateGroup(profileForm.value)" novalidate autocomplete="off">
+      <div class="sub-search-container row">
+        <h3>Group Details</h3>
+        <div class="sub-search-wrapper">
+
+          <div class="col-md-4" [ngClass]="{'has-error': profileForm.get('group_name').invalid && profileForm.get('group_name').dirty}">
+            <label for="group_name">
+              <span>Group Name</span>
+            </label>
+            <input type="text" class="user-input-text" formControlName="group_name" id="group_name" placeholder="Group Name">
+            <div class="text-danger" *ngIf="profileForm.get('group_name').dirty && profileForm.get('group_name').invalid">
+              <span class="col-sm-10" style="padding:4px 0 0" *ngIf="profileForm.get('group_name').errors">
+                    Please enter group name
+                </span>
+            </div>
+          </div>
+
+
+          <div class="col-md-4" [ngClass]="{'has-error': profileForm.get('group_description').invalid && profileForm.get('group_description').dirty}">
+            <label for="group_description">Group Description</label>
+            <input type="text" class="user-input-text" formControlName="group_description" id="group_description" placeholder="Group Description">
+            <div class="text-danger" *ngIf="profileForm.get('group_description').dirty && profileForm.get('group_description').invalid">
+              <span class="col-sm-10" style="padding:4px 0 0" *ngIf="profileForm.get('group_description').errors">
+                    Enter Group Description
+                </span>
+            </div>
+          </div>
+
+
+
+          <div class="col-md-4" formGroupName="access_list" id="access_list" [ngClass]="{'has-error': profileForm.get('access_list').invalid && profileForm.get('access_list').dirty}" required>
+            <label for="access_list">Access List:</label> <br>
+              <input type="checkbox" class="accessArray" [checked]="false" formControlName="CSC_Label_Approval" id="test12" name="screen2" value="CSC_Label_Approval"> CSC Label Approval<br>
+              <input type="checkbox" class="accessArray" [checked]="false" formControlName="CSC_Manager_Label_Approval" id="test13" name="screen3" value="CSC_Manager_Label_Approval"> CSC Manager Label Approval<br>
+              <input type="checkbox" class="accessArray" [checked]="false" formControlName="Inventory_Management" id="test14" name="screen4" value="Inventory_Management"> Inventory Management<br>
+              <input type="checkbox" class="accessArray" [checked]="false" formControlName="Label_Print" id="test15" name="screen5" value="Label_Print">Label Print<br>
+              <input type="checkbox" class="accessArray" [checked]="false" formControlName="Quality_Control" id="test16" name="screen6" value="Quality_Control">Quality Control<br>
+              <input type="checkbox" class="accessArray" [checked]="false" formControlName="Shipping" id="test17" name="screen7" value="Shipping">Shipping<br>
+              <input type="checkbox" class="accessArray" [checked]="false" formControlName="Order_Management" id="test18" name="screen8" value="Order_Management">Order Management<br>
+              <input type="checkbox" class="accessArray" [checked]="false" formControlName="Reporting" id="test1" name="screen1" value="Reporting"> Reporting<br>
+              <input type="checkbox" class="accessArray" [checked]="false" formControlName="User_Management" id="test19" name="screen9" value="User_Management">User Management<br>
+              <input type="checkbox" class="accessArray" [checked]="false" formControlName="Group_Management" id="test110" name="screen10" value="Group_Management">Group Management<br>
+          </div>
+
+
+
+            <!-- {{checkboxes[0].checked}} -->
+          <!-- <div class="col-md-4" [ngClass]="{'has-error': profileForm.get('group_name').invalid && profileForm.get('group_name').dirty}">
+            <label for="group">Group</label>
+            <select class="user-input-select" name="group_name" [formControl]="group_name" id="group_name" required>
+                  <option value="CSC Approver">CSC Approver</option>
+                  <option value="CSC Manager">CSC Manager</option>
+                  <option value="Quality Control">Quality Control</option>
+                  <option value="Printing">Printing</option>
+                  <option value="Fulfillment Operations">Fulfillment Operations</option>
+                  <option value="Manager Fulfillment">Manager Fulfillment</option>
+                  <option value="IT Admin">IT Admin</option>
+                  <option value="Super User">Super User</option>
+              </select>
+          </div> -->
+
+          <!-- <div class="col-md-4" [ngClass]="{'has-error': profileForm.get('group_name').invalid && profileForm.get('group_name').dirty}">
+            <label for="group_name">Group Name</label>
+            <input type="text" class="user-input-text" [formControl]="group_name" id="group_name" placeholder="Group Name">
+            <div class="text-danger" *ngIf="profileForm.get('group_name').dirty && profileForm.get('group_name').invalid">
+              <span class="col-sm-10" style="padding:4px 0 0" *ngIf="profileForm.get('group_name').errors">
+                    Please enter your last name
+                </span>
+            </div>
+          </div> -->
+<br>
+<br><br><br><br>
+
+  <div class="text-center">
+    <button type="submit" [disabled]="profileForm.invalid" class="ycc-button button-search">Update</button>
+    <button (click)="cancelGroupWasClicked()" class="ycc-button button-clear">Cancel</button>
+  </div>
+<!-- {{checkboxes[0].checked}} -->
+        </div>
+      </div>
+
+
+    </form>
+  </div>
+</div>

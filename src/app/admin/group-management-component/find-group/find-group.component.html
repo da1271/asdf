@@ -1,0 +1,104 @@
+
+
+<div class="user-search-container container">
+  <div class="row">
+    <h2 class="title">
+          Find Group
+          <button class="pull-right search-view-toggle" [class.searchCollapsed]="!searchViewToggle" (click)="searchViewToggle = !searchViewToggle;"></button>
+        </h2>
+  </div>
+
+  <div class="row search-fields-container" *ngIf="searchViewToggle">
+<form id="filter2" [formGroup]="registerForm" (ngSubmit)="registerGroup(registerForm.value)" novalidate autocomplete="off">
+      <div class="sub-search-container row">
+        <h3>Group Details</h3>
+        <div class="sub-search-wrapper">
+          <div class="col-md-4" [ngClass]="{'has-error': registerForm.get('group_name').invalid && registerForm.get('group_name').dirty}">
+            <label for="group_name">
+              <span>Group Name</span>
+            </label>
+            <input type="text" class="user-input-text" [formControl]="group_name" [(ngModel)]="term12"   id="group_name" placeholder="Group Name">
+          </div>
+
+
+          <div class="col-md-4" [ngClass]="{'has-error': registerForm.get('group_description').invalid && registerForm.get('group_description').dirty}">
+            <label for="group_description">Group Description</label>
+            <input type="text" class="user-input-text" [formControl]="group_description" [(ngModel)]="term22" id="group_description" placeholder="Group Description">
+          </div>
+
+          <form  class="col-md-4" name="access_list" id="access_list" required>
+            <label for="group">Screens Access List :</label> <br>
+              <input (click)="accessCheckbox($event)"  type="checkbox" class="accessArray" [formControl]="access_list" name="screen2" value="CSC_Label_Approval"> CSC Label Approval<br>
+              <input (click)="accessCheckbox($event)"  type="checkbox" class="accessArray" [formControl]="access_list" name="screen3" value="CSC_Manager_Label_Approval"> CSC Manager Label Approval<br>
+              <input (click)="accessCheckbox($event)"  type="checkbox" class="accessArray" [formControl]="access_list" name="screen4" value="Inventory_Management"> Inventory Management<br>
+              <input (click)="accessCheckbox($event)"  type="checkbox" class="accessArray" [formControl]="access_list" name="screen5" value="Label_Print"> Label Print<br>
+              <input (click)="accessCheckbox($event)"  type="checkbox" class="accessArray" [formControl]="access_list" name="screen6" value="Quality_Control"> Quality Control<br>
+              <input (click)="accessCheckbox($event)"  type="checkbox" class="accessArray" [formControl]="access_list" name="screen7" value="Shipping"> Shipping<br>
+              <input (click)="accessCheckbox($event)"  type="checkbox" class="accessArray" [formControl]="access_list" name="screen8" value="Order_Management"> Order Management<br>
+              <input (click)="accessCheckbox($event)"  type="checkbox" class="accessArray" [formControl]="access_list" name="screen1" value="Reporting"> Reporting<br>
+              <input (click)="accessCheckbox($event)"  type="checkbox" class="accessArray" [formControl]="access_list" name="screen9" value="User_Management"> User Management<br>
+              <input (click)="accessCheckbox($event)"  type="checkbox" class="accessArray" [formControl]="access_list" name="screen10" value="Group_Management"> Group Management<br>
+          </form>
+
+          <!-- <div *ngFor="let screen of group.access_list; let i = index;" class="form-check" style="padding-right:20px;">
+            <label class="form-check-label">
+              <input type="checkbox" class="form-check-input" [(ngModel)]="access_list.checked" [value]="access_list.value"> Value {{ i + 1 }}
+            </label>
+          </div> -->
+
+          <!-- <div class="col-md-4">
+            <label for="group">Group</label>
+            <select class="user-input-select" name="group_name" [formControl]="group_name" [(ngModel)]="term5" id="group_name" required>
+                  <option value="CSC Approver">CSC Approver</option>
+                  <option value="CSC Manager">CSC Manager</option>
+                  <option value="Quality Control">Quality Control</option>
+                  <option value="Printing">Printing</option>
+                  <option value="Fulfillment Operations">Fulfillment Operations</option>
+                  <option value="Manager Fulfillment">Manager Fulfillment</option>
+                  <option value="IT Admin">IT Admin</option>
+                  <option value="Super User">Super User</option>
+              </select>
+          </div> -->
+<br>
+<br><br>
+
+  <!-- <div class="text-center">
+    <button type="submit" [disabled]="registerForm.invalid" class="ycc-button button-search">Search</button>
+    <button type="reset" class="ycc-button button-clear">Reset</button>
+  </div> -->
+
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+
+<br>
+<table class="postTable container">
+  <thead>
+    <tr>
+      <th class="postTableCss"></th>
+      <th class="postTableCss">Group ID</th>
+      <!-- <th class="postTableCss"></th> -->
+      <!-- <th class="postTableCss"></th> -->
+      <th class="postTableCss">Group Name</th>
+      <th class="postTableCss">Group Description</th>
+      <th class="postTableCss">Access List</th>
+      <th class="postTableCss"></th>
+      <th class="postTableCss"></th>
+      <!-- <th class="postTableCss"></th> -->
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let group of groups | filter2: term12:term22 "  id='searchContainer'>
+      <td>{{ group._id}}</td>
+      <td>{{ group.group_name}}</td>
+      <td>{{ group.group_description}}</td>
+      <td><select id="accessListBox" name="accesslist"><option value="accesslist" disabled *ngFor="let screen of group.access_list" >{{ screen }}</option></select></td>
+      <td><a class="clickableCell" (click)="fireEditGroupEvent(this.group._id); editGroupWasClicked()" >Edit</a></td>
+      <td><a class="clickableCell" (click)="delGroup(group._id)" ng-really-message="Are you sure?">Delete</a></td>
+    </tr>
+  </tbody>

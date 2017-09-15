@@ -1,0 +1,9 @@
+<div class="buttonContainer container">
+<button class="addUserButton"  *ngIf="groupTabOpen && !onGroupEdit" (click)="setGroupButtonClicked(false); tabGroupWasOpen(false)">+ Add Group</button>
+<button class="addUserButton" *ngIf="!groupTabOpen && !onGroupEdit" (click)="setGroupButtonClicked(true); tabGroupWasOpen(true)">+ Find Group</button>
+</div>
+
+<app-add-group *ngIf="!buttonGroupWasClicked && !onGroupEdit"></app-add-group>
+<app-edit-group *ngIf="onGroupEdit" [groupid]="currentGroup" (cancelGroupClicked)="cancelGroupButtonClicked(false)"></app-edit-group>
+
+<app-find-group  *ngIf="buttonGroupWasClicked && !onGroupEdit" (onGroupEdit)="editDoyle($event)" (editGroupClicked)="editGroupButtonClicked(true)"></app-find-group>

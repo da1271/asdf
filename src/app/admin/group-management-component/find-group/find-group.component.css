@@ -1,0 +1,153 @@
+.user-search-container{
+    border-bottom: 1px solid #ccc;
+}
+.user-search-container h2.title{
+    font-weight: normal;
+    border: 1px solid #666;
+    font-size: 20px;
+    margin: 0;
+    padding: 5px 10px;
+    background: #eee;
+}
+.sub-search-container {
+    padding: 0px 60px 0 20px;
+}
+.sub-search-container h3 {
+    border-bottom: 1px solid #666;
+    font-size: 17px;
+}
+.sub-search-container .user-input-text, .sub-search-container .user-input-select  {
+    float: right;
+    width: 155px;
+    height: 26px;
+}
+.sub-search-wrapper > div {
+    padding: 10px 15px;
+}
+.sub-search-wrapper label {
+    font-weight: normal;
+}
+.search-view-toggle {
+    font-size: 18px;
+    padding: 0 5px;
+    background: url(../../../../assets/images/minus-icon.png);
+    border: none;
+    height: 23px;
+    width: 23px;
+}
+.search-view-toggle.searchCollapsed {
+    background: url(../../../../assets/images/plus-icon.png);
+}
+.advanced-container {
+    padding: 0px 60px 0 20px;
+    margin: 10px 0 30px 0;
+}
+.ycc-button {
+    border: 1px solid #000;
+    border-radius: 20px;
+    font-size: 17px;
+    padding: 5px 35px;
+}
+.button-search {
+    background: #ccc;
+    margin-left: 10px;
+
+}
+.button-clear {
+    background: #fff;
+    margin-right: 10px;
+
+}
+.search-fields-container {
+    padding: 0 0 30px 10px;
+}
+.adv-search-title {
+    background: url(../../../../assets/images/adv-arrow-down.png) no-repeat 135px 50%;
+}
+.sub-search-container .remove-border{
+    border: none;
+}
+.date-picker-container{
+    display: inline;
+    border-radius: 20px;
+    margin: 0 0 0 30px;
+}
+.date-pickers-wrapper{
+    display: inline;
+}
+.date-error{
+    color: red;
+    font-size: 11px;
+    display: inline-block;
+}
+.addUserButton{
+    float: right;
+    margin-right: 25%;
+    font-size: 20px
+}
+
+/*searchresults*/
+.postTable  {
+  padding-top: 20px;
+  /*width: 70%;*/
+  height: 100px;
+
+  margin-bottom: 150px;
+  margin-top: 40px;
+
+  /*table-layout:fixed;*/
+  /*overflow-y:scroll;*/
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  /*overflow:auto;*/
+}
+#accessListBox{
+  width: 140%;
+}
+
+#tableTitle{
+padding-left: 100%;
+}
+
+.clickableCell {
+  cursor: pointer;
+}
+
+th, td {
+  border: 1px solid transparent; /* No more visible border */
+    height: 30px;
+    transition: all 0.3s;
+    width: 1170px;
+}
+
+th {
+  background: #DFDFDF;  /* Darken header a bit */
+     font-weight: bold;
+       text-align: center;
+}
+td {
+  background: #FAFAFA;
+    text-align: center;
+
+}
+thead, tbody { display: block; }
+
+tbody {
+    /*width: 1170px;*/
+    height: 700px;
+    overflow-y: auto;    /* Trigger vertical scroll    */
+    overflow-x: hidden;  /* Hide the horizontal scroll */
+}
+
+tr {
+  height: 46px;
+}
+tr:nth-child(even) td { background: #F1F1F1;  }
+
+/* Cells in odd rows (1,3,5...) are another (excludes header cells)  */
+tr:nth-child(odd) td { background: #FEFEFE; }
+
+/*tr td:hover { background: #666; color: #FFF; }*/
+/* Hover cell effect! */

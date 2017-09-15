@@ -1,0 +1,122 @@
+
+
+<div class="user-search-container container">
+  <div class="row">
+    <h2 class="title">
+          Find User
+          <button class="pull-right search-view-toggle" [class.searchCollapsed]="!searchViewToggle" (click)="searchViewToggle = !searchViewToggle;"></button>
+        </h2>
+  </div>
+
+  <div class="row search-fields-container" *ngIf="searchViewToggle">
+<form id="filter" [formGroup]="registerForm" (ngSubmit)="callSearch()" novalidate autocomplete="off">
+      <div class="sub-search-container row">
+        <h3>User Details</h3>
+        <div class="sub-search-wrapper">
+          <div class="col-md-4" [ngClass]="{'has-error': registerForm.get('firstname').invalid && registerForm.get('firstname').dirty}">
+            <label for="fname">
+              <span>First Name</span>
+            </label>
+            <input type="text" class="user-input-text" [formControl]="firstname" [(ngModel)]="term1"   id="fname" placeholder="First Name">
+          </div>
+
+
+          <div class="col-md-4" [ngClass]="{'has-error': registerForm.get('lastname').invalid && registerForm.get('lastname').dirty}">
+            <label for="lname">Last Name</label>
+            <input type="text" class="user-input-text" [formControl]="lastname" [(ngModel)]="term2" id="lname" placeholder="Last Name">
+          </div>
+
+
+          <div class="col-md-4" [ngClass]="{'has-error': registerForm.get('email').invalid && registerForm.get('email').dirty}">
+            <label for="email">Email</label>
+            <input type="text" class="user-input-text" [formControl]="email" [(ngModel)]="term3" id="email" placeholder="Email">
+          </div>
+
+          <div class="col-md-4" [ngClass]="{'has-error': registerForm.get('username').invalid && registerForm.get('username').dirty}">
+            <label for="username">Username </label>
+            <input type="text" class="user-input-text" [formControl]="username" [(ngModel)]="term4" id="username" placeholder="Username">
+          </div>
+
+          <!-- <div class="col-md-4" formGroupName="passwordGroup" [ngClass]="{'has-error': registerForm.get('passwordGroup').errors }">
+
+            <div  [ngClass]="{'has-error': registerForm.get('passwordGroup.password').invalid && registerForm.get('passwordGroup.password').dirty}">
+              <label for="password">Password </label>
+              <input type="password" class="user-input-text" [formControl]="password" id="password" placeholder="Password">
+              <br>
+
+            </div>
+          </div>
+
+            <div class="col-md-4" formGroupName="passwordGroup" [ngClass]="{'has-error': registerForm.get('passwordGroup').errors }">
+            <div [ngClass]="{'has-error': registerForm.get('passwordGroup.retypepass').invalid && registerForm.get('passwordGroup.retypepass').dirty}">
+              <label for="retypepass">Retype</label>
+              <input type="password" class="user-input-text" [formControl]="retypepass" id="retypepass" placeholder="Retype Password">
+            </div>
+
+          </div> -->
+
+          <div class="col-md-4">
+            <label for="group">Group</label>
+            <select class="user-input-select" name="group_name" [formControl]="group_name" [(ngModel)]="term5" id="group_name">
+                  <option value="">None</option>
+                  <option value="CSC Approver">CSC Approver</option>
+                  <option value="CSC Manager">CSC Manager</option>
+                  <option value="Quality Control">Quality Control</option>
+                  <option value="Printing">Printing</option>
+                  <option value="Fulfillment Operations">Fulfillment Operations</option>
+                  <option value="Manager Fulfillment">Manager Fulfillment</option>
+                  <option value="IT Admin">IT Admin</option>
+                  <option value="Super User">Super User</option>
+              </select>
+          </div>
+<br>
+<br><br><br><br>
+
+  <div class="text-center">
+    <!-- <button type="submit" [disabled]="registerForm.invalid" class="ycc-button button-search">Search</button> -->
+    <!-- <button type="reset" class="ycc-button button-clear">Reset</button> -->
+  </div>
+
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+<br>
+
+
+<table class="postTable container">
+  <thead>
+    <tr>
+      <th class="postTableCss">Employee ID</th>
+      <th class="postTableCss"></th>
+      <th class="postTableCss">First Name</th>
+      <th class="postTableCss">Last Name</th>
+      <th class="postTableCss">Username</th>
+      <th class="postTableCss">Email</th>
+      <th class="postTableCss"></th>
+      <th class="postTableCss">Group</th>
+      <th class="postTableCss"></th>
+      <th class="postTableCss"></th>
+      <th class="postTableCss"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users | filter: term1:term2:term3:term4:term5; "  id='searchContainer container' >
+      <td>{{ user._id}}</td>
+      <!-- <td></td> -->
+      <td>{{ user.firstname}}</td>
+      <td>{{ user.lastname}}</td>
+      <td>{{ user.username }}</td>
+      <td>{{ user.email}}</td>
+      <!-- <td></td> -->
+      <td>{{ user.group_name}}</td>
+      <td></td>
+      <td><a class="clickableCell" (click)="fireEditEvent(this.user._id); editWasClicked()" >Edit</a></td>
+      <td><a class="clickableCell" (click)="deleteUser(user._id)" ng-really-message="Are you sure?">Delete</a></td>
+    </tr>
+  </tbody>
+</table>

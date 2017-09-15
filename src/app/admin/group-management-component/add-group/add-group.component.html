@@ -1,0 +1,81 @@
+<div class="user-search-container container">
+  <div class="row">
+    <h2 class="title">
+          Add Group
+          <button class="pull-right search-view-toggle" [class.searchCollapsed]="!searchViewToggle" (click)="searchViewToggle = !searchViewToggle;"></button>
+        </h2>
+  </div>
+
+  <div class="row search-fields-container" *ngIf="searchViewToggle">
+    <form [formGroup]="registerForm" (ngSubmit)="registerGroup(registerForm.value)" novalidate autocomplete="off">
+      <div class="sub-search-container row">
+        <h3>Group Details</h3>
+        <div class="sub-search-wrapper">
+          <div class="col-md-4" [ngClass]="{'has-error': registerForm.get('group_name').invalid && registerForm.get('group_name').dirty}">
+            <label for="group_name">
+              <span>Group name</span>
+            </label>
+            <input type="text" class="user-input-text" [formControl]="group_name" id="group_name" placeholder="Group Name">
+            <div class="text-danger" *ngIf="registerForm.get('group_name').dirty && registerForm.get('group_name').errors">
+              <span class="col-sm-10" style="padding:4px 0 0" *ngIf="registerForm.get('group_name').errors">
+                    Please enter a group name
+                </span>
+            </div>
+          </div>
+
+
+          <div class="col-md-4" [ngClass]="{'has-error': registerForm.get('group_description').invalid && registerForm.get('group_description').dirty}">
+            <label for="lname">Group Description</label>
+            <input type="text" class="user-input-text" [formControl]="group_description" id="group_description" placeholder="Group Description">
+            <div class="text-danger" *ngIf="registerForm.get('group_description').dirty && registerForm.get('group_description').errors">
+              <span class="col-sm-10" style="padding:4px 0 0" *ngIf="registerForm.get('group_description').errors">
+                    Please enter your last name
+                </span>
+            </div>
+          </div>
+
+
+          <!-- <div class="col-md-4">
+            <label for="group">Access List</label>
+            <select class="user-input-select" name="group_name" [formControl]="group_name" id="group_name" required>
+                  <option value="CSC Approver">Inventory Management</option>
+                  <option value="CSC Manager">CSC Label Approval</option>
+                  <option value="Quality Control">Lable Print</option>
+                  <option value="Printing">Quality Control</option>
+                  <option value="Fulfillment Operations">Shipping</option>
+                  <option value="Manager Fulfillment">User Management</option>
+                  <option value="IT Admin">Pers Order</option>
+                  <option value="Super User">CSC Manager Label Approval</option>
+                  <option value="Super User">Group Management</option>
+                  <option value="Super User">Order Management</option>
+              </select>
+          </div> -->
+
+          <form class="col-md-4" formGroupName="access_list" id="access_list" required>
+            <label for="group">Access List:</label> <br>
+              <input type="checkbox" class="accessArray" [formControl]="access_list" id="test2" name="screen" value="CSC_Label_Approval"> CSC Label Approval<br>
+              <input type="checkbox" class="accessArray" [formControl]="access_list" id="test3" name="screen" value="CSC_Manager_Label_Approval"> CSC Manager Label Approval<br>
+              <input type="checkbox" class="accessArray" [formControl]="access_list" id="test4" name="screen" value="Inventory_Management"> Inventory Management<br>
+              <input type="checkbox" class="accessArray" [formControl]="access_list" id="test5" name="screen" value="Label_Print"> Label Print<br>
+              <input type="checkbox" class="accessArray" [formControl]="access_list" id="test6" name="screen" value="Quality_Control"> Quality Control<br>
+              <input type="checkbox" class="accessArray" [formControl]="access_list" id="test7" name="screen" value="Shipping"> Shipping<br>
+              <input type="checkbox" class="accessArray" [formControl]="access_list" id="test8" name="screen" value="Order_Management"> Order Management<br>
+              <input type="checkbox" class="accessArray" [formControl]="access_list" id="test" name="screen" value="Reporting"> Reporting<br>
+              <input type="checkbox" class="accessArray" [formControl]="access_list" id="test9" name="screen" value="User_Management"> User Management<br>
+              <input type="checkbox" class="accessArray" [formControl]="access_list" id="test10" name="screen" value="Group_Management"> Group Management<br>
+          </form>
+<br>
+<br>
+<br>
+
+
+  <div class="text-center">
+    <button type="submit" [disabled]="registerForm.invalid" class="ycc-button button-search">Submit</button>
+    <button type="reset" class="ycc-button button-clear">Reset</button>
+  </div>
+
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

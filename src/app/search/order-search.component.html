@@ -1,0 +1,209 @@
+<div class="order-search-container container">
+    <div class="row">        
+        <h2 class="title">
+            Search
+            <button class="pull-right search-view-toggle" [class.searchCollapsed]="!searchViewToggle" (click)="searchViewToggle = !searchViewToggle;"></button>
+        </h2>
+    </div>
+    <div class="row search-fields-container" [@shrinkInOut] *ngIf="searchViewToggle">
+        <form #searchForm="ngForm">
+            <div class="sub-search-container row">
+                <h3>Order Details</h3>
+                <div class="sub-search-wrapper">
+                    <div class="col-md-4">
+                        <label>
+                            <span>Order Id</span>
+                        </label>
+                        <input type="text" class="user-input-text" [(ngModel)]="searchQuery.orderId" name="OrderId" />
+                    </div>
+                    <div class="col-md-4">
+                        <label>
+                            <span>Quantity</span>
+                        </label>
+                        <input type="text" class="user-input-text" [(ngModel)]="searchQuery.quantity" name="quantity" />
+                    </div>
+                    <div class="col-md-4">
+                        <label>
+                            <span>Order Source</span>
+                        </label>
+                        <select class="user-input-select" name="orderSrc" [(ngModel)]="searchQuery.orderSrc">
+                            <option *ngFor="let orderSrcTmpl of orderSrcs" [value]="orderSrcTmpl">{{orderSrcTmpl}}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label>
+                            <span>SKU</span>
+                        </label>
+                        <select class="user-input-select" name="sku" [(ngModel)]="searchQuery.sku">
+                            <option *ngFor="let skuTmpl of skus" [value]="skuTmpl">{{skuTmpl}}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label>
+                            <span>Order Status</span>
+                        </label>
+                        <input type="text" class="user-input-text" [(ngModel)]="searchQuery.orderStatus" name="orderStatus" />
+                    </div>
+                    <div  class="col-md-4">
+                        <label>
+                            <span>Order Size</span>
+                        </label>
+                        <input type="text" class="user-input-text" [(ngModel)]="searchQuery.orderSize" name="orderSize" />
+                    </div>
+                    <div  class="col-md-4">
+                        <label>
+                            <span>SKU Desc</span>
+                        </label>
+                        <select class="user-input-select" name="skuDesc" [(ngModel)]="searchQuery.skuDesc">
+                            <option *ngFor="let skuDescription of skuDescs" [value]="skuDescription">{{skuDescription}}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-8">
+                        <label>Show Orders:</label>                        
+                        <div class="date-picker-container">
+                            <span>From: </span>
+                            <md-input-container>
+                                <input mdInput [mdDatepicker]="fromDatePicker" [max]="maxDate" placeholder="Choose a date">
+                                <button mdSuffix [mdDatepickerToggle]="fromDatePicker"></button>
+                            </md-input-container>
+                            <md-datepicker #fromDatePicker (selectedChanged)="dateSelected($event, 'from')"></md-datepicker>
+                        </div>
+                        <div class="date-picker-container">
+                            <span>To: </span>
+                            <md-input-container>
+                                <input mdInput [mdDatepicker]="toDatePicker" [max]="maxDate" placeholder="Choose a date">
+                                <button mdSuffix [mdDatepickerToggle]="toDatePicker"></button>
+                            </md-input-container>
+                            <md-datepicker #toDatePicker (selectedChanged)="dateSelected($event, 'to')"></md-datepicker>
+                        </div>
+                        <span class="date-error" *ngIf="fromToDateMismatch">'From Date' should be earlier than 'To date'</span>                        
+                    </div>
+                </div>
+            </div>
+            <div class="sub-search-container row">
+                <h3>Product & Shipping Details</h3>
+                <div class="sub-search-wrapper">
+                    <div class="col-md-4">
+                        <label>
+                            <span>Fragrance</span>
+                        </label>
+                        <select class="user-input-select" name="fragrance" [(ngModel)]="searchQuery.fragrance">
+                            <option *ngFor="let fragrnce of fragrances" [value]="fragrnce">{{fragrnce}}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label>
+                            <span>Shipping Method</span>
+                        </label>
+                        <select class="user-input-select" name="shippingMtd" [(ngModel)]="searchQuery.shippingMtd" required>
+                            <option *ngFor="let shipMtd of shippingMtds" [value]="shipMtd">{{shipMtd}}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label>
+                            <span>Ship to State</span>
+                        </label>
+                        <input type="text" class="user-input-text" [(ngModel)]="searchQuery.shpToState" name="shpToState" />
+                    </div>
+                    <div class="col-md-4">
+                        <label>
+                            <span>Product Form</span>
+                        </label>
+                        <select class="user-input-select" name="productForm" [(ngModel)]="searchQuery.productForm" required>
+                            <option *ngFor="let productFrm of productForms" [value]="productFrm">{{productFrm}}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label>
+                            <span>Destination</span>
+                        </label>
+                        <select class="user-input-select" name="destCtry" [(ngModel)]="searchQuery.destCtry" required>
+                            <option *ngFor="let destinationCtry of destCtries" [value]="destinationCtry">{{destinationCtry}}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label>
+                            <span>Age</span>
+                        </label>
+                        <input type="text" class="user-input-text" [(ngModel)]="searchQuery.age" name="age" />
+                    </div>
+                </div>
+            </div>
+            <div class="sub-search-container row">
+                <h3 class="adv-search-title" [class.remove-border]="!advanceSearchToggle" (click)="advanceSearchToggle = !advanceSearchToggle">
+                    Advanced Search
+                </h3>
+                <div class="sub-search-wrapper" *ngIf="advanceSearchToggle">
+                    <div class="col-md-4">
+                        <label>
+                            <span>Customer Name</span>
+                        </label>
+                        <input type="text" class="user-input-text" [(ngModel)]="searchQuery.custName" name="custName" />
+                    </div>
+                    <div class="col-md-4">
+                        <label>
+                            <span>Contact Number</span>
+                        </label>
+                        <input type="text" class="user-input-text" [(ngModel)]="searchQuery.contactNum" name="contactNum" />
+                    </div>
+                    <div class="col-md-4">
+                        <label>
+                            <span>Address Line 3</span>
+                        </label>
+                        <input type="text" class="user-input-text" [(ngModel)]="searchQuery.addressLine3" name="addressLine3" />
+                    </div>
+                    <div class="col-md-4">
+                        <label>
+                            <span>SurName</span>
+                        </label>
+                        <input type="text" class="user-input-text" [(ngModel)]="searchQuery.surName" name="surName" />
+                    </div>
+                    <div class="col-md-4">
+                        <label>
+                            <span>Address Line 1</span>
+                        </label>
+                        <input type="text" class="user-input-text" [(ngModel)]="searchQuery.addressLine1" name="addressLine1" />
+                    </div>
+                    <div class="col-md-4">
+                        <label>
+                            <span>Town</span>
+                        </label>
+                        <input type="text" class="user-input-text" [(ngModel)]="searchQuery.town" name="town" />
+                    </div>
+                    <div class="col-md-4">
+                        <label>
+                            <span>Email</span>
+                        </label>
+                        <input type="text" class="user-input-text" [(ngModel)]="searchQuery.email" name="email" />
+                    </div>
+                    <div class="col-md-4">
+                        <label>
+                            <span>Address Line 2</span>
+                        </label>
+                        <input type="text" class="user-input-text" [(ngModel)]="searchQuery.addressLine2" name="addressLine2" />
+                    </div>
+                    <div class="col-md-4">
+                        <label>
+                            <span>Country</span>
+                        </label>
+                        <input type="text" class="user-input-text" [(ngModel)]="searchQuery.custCtry" name="custCtry" />
+                    </div>
+                    <div class="col-md-4">
+                        <label>
+                            <span>Postal Code</span>
+                        </label>
+                        <input type="text" class="user-input-text" [(ngModel)]="searchQuery.postalCode" name="postalCode" />
+                    </div>
+                </div>                
+            </div>
+            <div class="text-center">
+                <button class="ycc-button button-clear">
+                    Clear
+                </button>
+                <button class="ycc-button button-search" (click)="callSearch();">
+                    Search
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
